@@ -114,7 +114,7 @@ will be selected. On the other hand, you also know that only a few of your frien
 Will you vote for Japanese and Chinese to give Japanese cuisine a chance?
 
 This example illustrates that group decision-making is a complex process that represents an
-aggregation of individual decisions. Individual decision-makers would like to influence the final decision in a
+aggregation of individual preferences. Individual decision-makers would like to influence the final decision in a
 way that is beneficial to them, and hence they may be strategic in communicating their individual choices.
 Moreover, it is essentially impossible to eliminate strategic behavior by changing the voting rule:
 the groundbreaking result of \citet{gib:j:gs} and \citet{sat:j:gs} states that, under any 
@@ -254,7 +254,7 @@ to the voter's beliefs. We present our formal definitions and the reasoning that
 justifies them in Section~\ref{sec:model}.
 
 To develop a better understanding of the resulting model, we instantiate it for a specific family
-of voting rules, namely, $k$-approval with $k\ge 1$. We develop a classification of level-1 
+of voting rules, namely, $k$-approval with $k\ge 1$. We develop a classification of \mbox{level-1} 
 strategies under $k$-approval and clarify the relationship between level-1 reasoning and the predictions of the 
 Gibbard--Satterthwaite theorem (Section~\ref{sec:classification}). We then switch our attention to level-2 strategies, 
 and, in particular, to the complexity of computing such strategies.
@@ -262,13 +262,13 @@ For $k$-approval with $k=1$ (i.e., the classic Plurality rule) we describe an ef
 that decides whether a given strategy weakly dominates another strategy; as a corollary of this result, 
 we conclude that under the Plurality rule level-2 strategies can be efficiently computed 
 and efficiently recognised (Section~\ref{sec:plu}). We obtain a similar result for 2-approval under an additional assumption
-of minimality (Section~\ref{sec:2app}). Briefly, this assumption means that the level-2 player expects all level-1 players
+of minimality of manipulations in the strategy sets (Section~\ref{sec:2app}). Briefly, this assumption means that the level-2 player expects all level-1 players
 to manipulate by making as few changes to their votes as possible. However, for larger values of $k$
 finding level-2 strategies becomes computationally challenging: we show that this problem
 is NP-hard for $k$-approval with $k\ge 4$ (Section~\ref{sec:hard}). As the problem of finding a level-1 strategy
 under $k$-approval is computationally easy for any value of $k\ge 1$ (this follows immediately
 by combining our characterization of level-1 strategies with the classic results of \citet{btt89}),
-this demonstrates that higher levels of sophistication come with a price tag in terms
+this demonstrates that higher levels of sophistication for voters come with a price tag in terms
 of algorithmic complexity.
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -295,14 +295,16 @@ Dominance-based solution concepts have been investigated as well
 \citep{mou:j:dominance,dhi-loc:j:dominance,bue-dhi-vid:j:domsolv,dellis2010weak,MLR14}, 
 albeit from a non-computational perspective.
   
-A closely related topic is voting dynamics, where players change their votes one by one in response to the current outcome
+All the aforementioned papers do not make any restricting assumptions on the ability of voters to reason, de facto assuming they they are unbounded. 
+\cite{GHRS} take a different approach and assume that voters are boundedly rational and do not think beyond manipulating or countermanipulating. 
+They look for conditions that guarantee the existence of a Nash equilibria in pure strategies.  In this paper we go further and formally define the degree of rationality of the voters by using the cognitive hierarchy approach. Level-$k$ models and the cognitive hierarchy framework have been long used to model a variety of strategic interactions;
+we refer the reader to the survey of \citet{crawford2013structural}. Nevertheless, to the best
+of our knowledge, ours is the first attempt to apply these ideas in the context of voting.
+
+A  topic closely related to voting games is voting dynamics, where players change their votes one by one in response to the current outcome
 \citep{mei-pol:c:convergence,rei-end:c:polls,rey-wil:c:bestreply,OMPRJ15,EOPR16,lev-ros:j:iterative,KSLR17}; 
 see also a survey by \citet{Meir-trends}.  
 However, this line of work assumes the voters to be myopic.
-
-Level-$k$ models and cognitive hierarchy frameworks have been used to model a variety of strategic interactions;
-we refer the reader to the survey of \citet{crawford2013structural}. Nevertheless, to the best
-of our knowledge, ours is the first attempt to apply these ideas in the context of voting.
 
 Our work can also be seen as an extension of the model of safe strategic voting proposed by \citet{safe2}. 
 However, unlike us, Slinko
@@ -343,8 +345,7 @@ the terms {\em candidates} and {\em alternatives} interchangeably. Let $\calL(C)
 of all linear orders over $C$.
 An election is defined by a {\em preference profile} $V=(v_1, \dots, v_n)$, where each $v_i$,
 $i\in [n]$, is a linear order over $C$; we refer to $v_i$ as the {\em sincere vote}, or {\em preferences}, of voter $i$.
-For two candidates $c_1, c_2\in C$ we write $c_1\succ_i c_2$ if voter~$i$ ranks $c_1$ above $c_2$; 
-if this is the case, we say that voter $i$ {\em prefers} $c_1$ to $c_2$.
+For two candidates $c_1, c_2\in C$ we write $c_1\succ_i c_2$, if voter~$i$ ranks $c_1$ above $c_2$, and say that voter $i$ {\em prefers} $c_1$ to $c_2$.
 For brevity we will sometimes write $ab\dots z$ to represent a vote $v_i$ such that $a\succ_i b\succ_i\cdots\succ_i z$.
 We denote the top candidate in $v_i$ by $\tp(v_i)$.  Also, we denote the set of top $k$ candidates in~$v_i$
 by $\tp_k(v_i)$; note that $\tp_1(v_i)=\{\tp(v_i)\}$ and
@@ -364,7 +365,7 @@ Under $k$-approval, $k\in [m-1]$, each candidate receives one point from each vo
 her in top $k$ positions; the $k$-approval score of a candidate $c$, denoted by $\scr_k(c, V)$,
 is the total number of points that she receives.
 The winner is chosen among the candidates with the highest score
-according to a fixed linear order $>$ on the set of candidates $C$: specifically, the winner
+according to a fixed tie-breaking  linear order $>$ on the set of candidates $C$: specifically, the winner
 is the highest-ranked candidate with respect to this order among the candidates with the highest score.
 The $1$-approval voting rule is widely used and known as Plurality. We will denote the $k$-approval rule
 (with tie-breaking based on a fixed linear order $>$) by $\calR_k$.
@@ -499,7 +500,7 @@ of games, which differ in sets of actions available to GS-manipulators.
 \subsection{Gibbard--Satterthwaite Games}\label{sec:gs}
 We will now describe a formal model that will enable us to reason about the decisions 
 faced by a level-2 voter. For convenience, we assume that voter $1$ is a level-2 voter and describe
-a normal-form game that captures his perspective of strategic interaction.
+a normal-form game that captures his perspective of strategic interaction, i.e., his beliefs about the game he is playing.
 
 Fix a voting rule $\calR$, let $V$ be a profile over a set of candidates $C$, 
 let $N=N(V,\calR)$ be the set of GS-manipulators at $V$ with respect to $\calR$, and set $N_1=N\cup\{1\}$.
@@ -547,7 +548,7 @@ In game-theoretic literature, it is typical to assume that a level-2 player is e
 beliefs about other players' types as well as a utility function describing his payoffs under all
 possible strategy profiles. Under these conditions, it makes sense to define level-2 strategies
 as those that maximise player 2's expected payoff. However, in the absence of numerical information, 
-as is the case in voting games, it is more natural to define level-2 strategies simply as 
+as is the case of voting games, it is more natural to define level-2 strategies simply as 
 strategies that are not weakly dominated. We formalize this intuition as follows.
 
 \begin{definition}
@@ -556,7 +557,7 @@ is a {\em level-2 strategy} if no other strategy of player~1 weakly dominates $v
 \end{definition}
 
 Another important class of strategies that we would like to investigate 
-are strategies that weakly dominate truthful voting, i.e., witness
+are strategies that weakly dominate truthful voting, i.e., those strategies that witness
 that the sincere vote is not a level-2 strategy; we will refer to such strategies 
 as {\em improving strategies}.
 Indeed, as argued above, the default action of each voter 
@@ -568,21 +569,22 @@ that our level-2 player considers possible.
 
 \begin{definition}
 Given a GS-game $G=(V, \calR, (A_i)_{i\in N(V, \calR)})$, we say that a strategy $v\in A_1$ of player~1
-is an {\em improving strategy} if $v$ weakly dominates $v_1$.
+is an {\em improving strategy} if $v$ weakly dominates player 1's sincere strategy~$v_1$.
 \end{definition}
 
 We note that a level-2 strategy may fail to be an improving strategy, 
 and conversely, an improving strategy is not necessarily a level-2 strategy.
 For instance, in Example~\ref{ex1} the strategy $bac$
 is a level-2 strategy, but not an improving strategy.
-However, if a player has an improving strategy, he also has an improving strategy
+However, it is easy to see that, if a player has an improving strategy, he also has an improving strategy
 that is also a level-2 strategy. 
 
 One can also ask if a given strategy weakly dominates all other (non-equivalent) strategies. 
-However, while strategies with this property are highly desirable from the perspective
-of a strategic voter, it is not reasonable to assume that a voter will remain truthful
-unless he can find a strategy with this property (and therefore we do not investigate such strategies 
-in detail in our work).
+However, while strategies with this property are highly desirable, from the perspective
+of a strategic voter, it is important to find out if his truthful strategy is weakly dominated or not.
+% it is not reasonable to assume that a voter will remain truthful
+%unless he can find a strategy with this property (and therefore we do not investigate such strategies 
+%in detail in our work).
 Indeed, the main issue faced
 by a strategic voter is whether to manipulate at all, and if a certain vote
 can always ensure an outcome that is at least as good, and sometimes better, as that guaranteed by his truthful vote, 
@@ -621,7 +623,7 @@ $d$&$d$&$b$&$c$&$b$\\
 $w$&$w$&$w$&$a$&$c$\\
 $c$&$a$&$a$&$b$&$d$\\
 \end{tabular}
-\caption{Player 1 has two incomparable improving strategies
+\caption{Player 1 has two incomparable improving strategies.
 }\label{table:example}
 \end{center}
 \end{table}
@@ -629,10 +631,11 @@ $c$&$a$&$a$&$b$&$d$\\
 \end{example}
 
 We note that a level-2 voter may find it useful to act as a counter-manipulator
-\citep{pattanaik1976threats}, i.e., 
+\citep{pattanaik1976threats,EGHRS}, i.e., 
 to submit a vote that is not manipulative with respect to the truthful
-profile, but may prevent others from helping a candidate that this voter ranks
-below the current winner.
+profile, but minimises the damage from someone else's manipulation.
+%may prevent others from helping a candidate that this voter ranks
+%below the current winner.
 
 \begin{example}\label{ex:counter}
 {\em
@@ -642,6 +645,10 @@ Under truthful voting $a$ wins, so voter 6 is the only GS-manipulator: if he cha
 to $bca$ then $b$ wins, and $b\succ_6 a$. Therefore, for voter 1 voting $acb$ is preferable to voting truthfully:
 this insincere vote has no impact if voter 6 votes truthfully, but prevents $b$ from becoming a winner when voter 6
 submits a manipulative vote. 
+
+Thus, in this example $acb$ is an improving strategy, 
+and truthful voting is not a level-2 strategy as it is weakly dominated
+by voting $acb$. In contrast, $acb$ is a level-2 strategy, as no other strategy weakly dominates it.
 
 \begin{table}[h]
 \begin{center}
@@ -657,9 +664,6 @@ $b$&$c$&$c$&$c$&$c$&$a$\\
 \end{table}
 }
 \end{example}
-
-We note that in Example~\ref{ex:counter} truthful voting is not a level-2 strategy as it is weakly dominated
-by voting $abc$; in contrast; $abc$ is a level-2 strategy, as no other strategy weakly dominates it.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1028,7 +1032,7 @@ we consider all of his $m$ pairwise non-equivalent strategies, and check if any 
 \section{2-Approval}\label{sec:2app}
 In this section, we study the computational complexity of identifying level-2 strategies 
 and improving strategies in GS-games under $2$-approval. We show that if the level-2 player believes
-that level-1 players only consider minimal manipulations, 
+that level-1 players can only contemplate minimal manipulations, 
 he can efficiently compute his level-2 strategies as well as his improving strategies. 
 As argued in Section~\ref{sec:classification}, 
 minimality is a reasonable assumption, as level-1 players have no reason to use complex
@@ -1090,7 +1094,7 @@ from Lemma~\ref{mantypes}; note also that it does not depend on the minimality a
 %all rank the same candidate $p^*$ first. 
 
 \begin{proposition}\label{prop:2app-promote}
-Consider a GS-game $G=(V, \calR_2, (A_i)_{i\in N(V, \calR_2)})$
+Consider a GS-game $G=(V, \calR_2, (A_i)_{i\in N(V, \calR_2)})$.
 Let $w$ be the 2-approval winner at $V$ with $\scr_2(w, V)=t$.
 Consider a player $i\in N(V, \calR_2)\setminus\{1\}$ 
 such that $w\not\in\tp_2(v_i)$ and the set $A_i$ consists of $i$'s truthful vote 
@@ -1252,10 +1256,9 @@ $\scr_2(b', V^{u}_{-1})\le t-2$.
 Thus, we set $C^{[1]}=\emptyset$, $C^{[0]}=\{c\in C\setminus\{a\}\mid w > c\}$, 
 $C^{[-1]}=\{c\in C\setminus\{a', b, b'\}\mid c > w\}$, $C^{[-2]}=\{a', b'\}$ and call
 $$
-\calA'(G, w, b, t, t-1, C^{[1]}, C^{[0]}, C^{[-1]}, C^{[-2]}).
+\calA'(G, w, b, t, t-1, C^{[1]}, C^{[0]}, C^{[-1]}, C^{[-2]}).\qedhere
 $$
 \end{description}
-
 \end{proof}
 
 Just as for Plurality, we obtain the following corollary that describes the complexity 
@@ -1325,7 +1328,7 @@ $d$      &$\dots$  &$\dots$  &$\dots$  &$\dots$  &$\dots$  &$\dots$  \\
 $\dots$  &$\dots$  &$\dots$  &$\dots$  &$\dots$  &$\dots$  &$\dots$  \\
 
 \end{tabular}
-\caption{The strategy $bc\dots$ of player 1 weakly dominates all non-equivalent strategies
+\caption{The strategy $bc\dots$ of player 1 weakly dominates all non-equivalent strategies.
 }\label{table:non-min}
 \end{center}
 \end{table}
@@ -1510,7 +1513,7 @@ the preferences of the $i$-th voter, $i\in [\mu]$, by inserting the
 group $H_i$ in positions $5, \dots, k$, and adding all other new dummy candidates
 at the bottom of his ranking. Then the $k$-approval scores of all candidates in $C$
 remain the same as in the original construction, and the $k$-approval score of each new dummy candidate
-is $1$.The rest of the proof then goes through without change. 
+is $1$. The rest of the proof then goes through without change. 
 \end{proof}
 
 We note that the strategies of level-1 players in our hardness proof are not minimal;
@@ -1569,12 +1572,12 @@ without the minimality assumption?
 \end{itemize}
 
 In our analysis, we have focused on level-1 and level-2 voters. It would also be interesting
-to extend our formal definitions to larger values of $\ell$ and 
-to investigate the associated algorithmic issues;
-while it appears that for Plurality our algorithm can be extended in a straightforward manner, 
-it is not clear if this is also the case for 2-approval.
+to extend our formal definitions to level-$\ell$ players for $\ell\ge 3$ and 
+to investigate the associated algorithmic issues. 
+While it is intuitively clear that the view of the game for these players will be more complex, it appears that for Plurality our algorithm can be extended in a straightforward manner; 
+however, it is not clear if this is also the case for 2-approval.
 Another interesting question, which can be analysed empirically, is whether truthful voting is likely to be a level-2 strategy,
-or, more broadly, whether level-2 strategies are likely to exist; again, this question
+or, more broadly, whether improving strategies are likely to exist; again, this question
 can also be asked for $\ell\ge 2$. Note that the analysis in our paper contributes algorithmic tools
 tools to tackle this issue.
 
